@@ -264,6 +264,27 @@ iframe{
 
 
 
+.videootzivi{
+  text-align: center;
+  margin: 60px 0;
+}
+.videootzivi iframe{
+  margin-bottom: 15px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 @-webkit-keyframes pulse {
   0%,to {
