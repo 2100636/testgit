@@ -109,7 +109,7 @@
 </div>
 
 
-{if $theme_settings.homepage_reviews && (int)$theme_settings.homepage_reviews_count && isset($no)}
+{if $theme_settings.homepage_reviews && (int)$theme_settings.homepage_reviews_count && isset($no)}  {* !!! *}
   {$reviews = $wa->shop->reviews((int)$theme_settings.homepage_reviews_count)}
   {$countReviews = count($reviews)}
   {if $countReviews}
