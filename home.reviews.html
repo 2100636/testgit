@@ -1,52 +1,76 @@
 {strip}
-{if $theme_settings.homepage_reviews && (int)$theme_settings.homepage_reviews_count}
-    {$reviews = $wa->shop->reviews((int)$theme_settings.homepage_reviews_count)}
-    {$countReviews = count($reviews)}
-    {if $countReviews}
-        {$products_review = []}
-        {foreach $reviews as $review}
-            {if isset($review.product_id) && !empty($review.product_id)}
-                {$products_id_review[] = $review.product_id}
-            {/if}
-        {/foreach}
-        {if count($products_id_review)}
-            {$products_review = $wa->shop->products($products_id_review)}
-        {/if}
 
-        <div class="homepage-wrap homepage-reviews">
-            <div class="align-center">
-                <div class="homepage-reviews_title">[`Last reviews`]</div>
-            </div>
-            <div class="js-reviews-carusel owl-carousel owl-theme owl-loaded">
-                {foreach $reviews as $review}
-                    <div class="homepage-reviews_el">
-                        <div class="clearfix">
-                            {if isset($products_review[$review.product_id])}
-                                <a href="{$review.product_url}" class="homepage-reviews_el-image">
-                                    {$wa->shop->productImgHtml($products_review[$review.product_id], '96', ['class' => 'js-product-image',  'alt' => $review.product_name|escape])}
-                                </a>
-                            {/if}
-                            <div class="homepage-reviews_el-right">
-                                <div class="homepage-reviews_el-title">
-                                    {if $review.rate > 0}
-                                        <span class="rating">
-                                            {$wa->shop->ratingHtml($review.rate, 10)}
-                                        </span>
-                                    {/if}
-                                    {if isset($products_review[$review.product_id])}
-                                        <a href="{$review.product_url}">{$review.product_name|escape}</a>
-                                    {else}
-                                        {$review.product_name|escape}
-                                    {/if}
-                                </div>
-                                <div class="homepage-reviews_el-text">{strip_tags($review.text)|truncate:150}</div>
-                            </div>
-                        </div>
 
-                    </div>
-                {/foreach}
-            </div>
-        </div>
+<div class="videootzivi">
+  <div class="container">
+  <h2>Видео отзывы</h2>
+
+  <iframe width="360" height="204" src="https://www.youtube.com/embed/ZNKCVzoo7WQ?rel=0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+
+  <iframe width="360" height="204" src="https://www.youtube.com/embed/gB0GPWE2VF0?rel=0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+ 
+
+
+  <div class="pt-3 pt-md-5 text-center"> <a class="btn btn-primary btn-round btn-shadow" href="reviews/">ВСЕ ОТЗЫВЫ</a> </div> 
+
+
+
+
+  </div>
+</div>
+
+
+
+
+{if $theme_settings.homepage_reviews && (int)$theme_settings.homepage_reviews_count && isset($no)}  {* !!! *}
+  {$reviews = $wa->shop->reviews((int)$theme_settings.homepage_reviews_count)}
+  {$countReviews = count($reviews)}
+  {if $countReviews}
+    {$products_review = []}
+    {foreach $reviews as $review}
+      {if isset($review.product_id) && !empty($review.product_id)}
+        {$products_id_review[] = $review.product_id}
+      {/if}
+    {/foreach}
+    {if count($products_id_review)}
+      {$products_review = $wa->shop->products($products_id_review)}
     {/if}
+
+    <div class="homepage-wrap homepage-reviews">
+      <div class="align-center">
+        <div class="homepage-reviews_title">[`Last reviews`]</div>
+      </div>
+      <div class="js-reviews-carusel owl-carousel owl-theme owl-loaded">
+        {foreach $reviews as $review}
+          <div class="homepage-reviews_el">
+            <div class="clearfix">
+              {if isset($products_review[$review.product_id])}
+                <a href="{$review.product_url}" class="homepage-reviews_el-image">
+                  {$wa->shop->productImgHtml($products_review[$review.product_id], '96', ['class' => 'js-product-image',  'alt' => $review.product_name|escape])}
+                </a>
+              {/if}
+              <div class="homepage-reviews_el-right">
+                <div class="homepage-reviews_el-title">
+                  {if $review.rate > 0}
+                    <span class="rating">
+                      {$wa->shop->ratingHtml($review.rate, 10)}
+                    </span>
+                  {/if}
+                  {if isset($products_review[$review.product_id])}
+                    <a href="{$review.product_url}">{$review.product_name|escape}</a>
+                  {else}
+                    {$review.product_name|escape}
+                  {/if}
+                </div>
+                <div class="homepage-reviews_el-text">{strip_tags($review.text)|truncate:150}</div>
+              </div>
+            </div>
+
+          </div>
+        {/foreach}
+      </div>
+    </div>
+  {/if}
 {/if}
 {/strip}
