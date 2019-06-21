@@ -1176,7 +1176,7 @@ border-right: 0;
 
 @media (min-width: 769px) {
   .videootzivi .reviews-video {
-      padding:0 80px
+    padding: 0 80px 20px;
   }
 }
 
