@@ -1,0 +1,162 @@
+{strip}
+
+<link rel="stylesheet" type="text/css" href="/wa-data/public/slick/slick.css"/>
+<script src="/wa-data/public/slick/slick.min.js"></script>
+<!-- <script src="/sites/all/libraries/jquery.lazy.min.js"></script> -->
+
+<div class="videootzivi">
+  <div class="container">
+  <h2>Видео отзывы</h2>
+
+  <div class="reviews-video"> 
+    <div class="reviews-video__item"> 
+      <div class="reviews-video__content"> 
+        <div class="reviews-video__window"> 
+        <div class="reviews-video__image" style="display: block; background-image: url('/wa-data/public/site/img/video/gB0GPWE2VF0.jpg')" ></div> 
+        <div class="reviews-video__btn-play" data-youtube="gB0GPWE2VF0">
+        </div> 
+        </div> 
+      </div> 
+    </div> 
+    <div class="reviews-video__item"> 
+      <div class="reviews-video__content"> 
+        <div class="reviews-video__window"> 
+        <div class="reviews-video__image" style="display: block; background-image: url('/wa-data/public/site/img/video/ZNKCVzoo7WQ.jpg')"></div> 
+        <div class="reviews-video__btn-play" data-youtube="ZNKCVzoo7WQ">
+        </div> 
+        </div> 
+      </div> 
+    </div> 
+    <div class="reviews-video__item"> 
+      <div class="reviews-video__content"> 
+        <div class="reviews-video__window"> 
+        <div class="reviews-video__image" style="display: block; background-image: url('/wa-data/public/site/img/video/aToJg3r4ArU.jpg')"></div> 
+        <div class="reviews-video__btn-play" data-youtube="aToJg3r4ArU">
+        </div> 
+        </div> 
+      </div> 
+    </div> 
+    <div class="reviews-video__item"> 
+      <div class="reviews-video__content"> 
+        <div class="reviews-video__window"> 
+        <div class="reviews-video__image" style="display: block; background-image: url('/wa-data/public/site/img/video/gB0GPWE2VF0.jpg')" ></div> 
+        <div class="reviews-video__btn-play" data-youtube="gB0GPWE2VF0">
+        </div> 
+        </div> 
+      </div> 
+    </div> 
+  </div> 
+
+  <div class="pt-3 pt-md-5 text-center"> <a class="btn btn-primary btn-round btn-shadow" href="reviews/">ВСЕ ОТЗЫВЫ</a> </div> 
+
+
+
+{literal}
+<script>
+(function($) {
+  $(document).ready(function() {
+  
+  // Reviews video : define variables
+  var $reviewsVideo = $('.reviews-video');
+
+  // Reviews video : Slider
+  $reviewsVideo.slick({
+    infinite : true,
+    dots: true,
+    slidesToShow : 3,
+    slidesToScroll : 1,
+    responsive : [
+      {
+        breakpoint : 768,
+        settings : {
+          infinite : true,
+          dots: false,
+          slidesToShow : 1,
+          slidesToScroll : 1
+        }
+      }
+    ]
+  });
+
+  // Reviews video : Embed video
+  $(document).on('click', '.reviews-video__btn-play', function () {
+    var id = $(this).data('youtube');
+    var $window = $(this).parent();
+    var $img = $(this).siblings('.reviews-video__image');
+    var width = Math.round($img.width());
+    var height = Math.round($img.innerHeight());
+    var $iframe = $('<iframe width="' + width + '" height="' + height + '" src="https://www.youtube.com/embed/' + id + '?cc_load_policy=3&autoplay=1&autohide=1&iv_load_policy=3&modestbranding=0&rel=0&showinfo=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>');
+    $window.addClass('embeded-iframe');
+    $window.append($iframe);
+  });
+
+  // Reviews video : Remove embeded video on slide
+  $reviewsVideo.on('beforeChange', function () {
+    $(this).find('iframe').remove();
+    $(this).find('.embeded-iframe').removeClass('embeded-iframe');
+  });
+
+  //$('.lazy').Lazy();
+
+  });
+})(jQuery);
+
+</script>
+{/literal}
+
+
+  </div>
+</div>
+
+
+{if $theme_settings.homepage_reviews && (int)$theme_settings.homepage_reviews_count && isset($no)}
+  {$reviews = $wa->shop->reviews((int)$theme_settings.homepage_reviews_count)}
+  {$countReviews = count($reviews)}
+  {if $countReviews}
+    {$products_review = []}
+    {foreach $reviews as $review}
+      {if isset($review.product_id) && !empty($review.product_id)}
+        {$products_id_review[] = $review.product_id}
+      {/if}
+    {/foreach}
+    {if count($products_id_review)}
+      {$products_review = $wa->shop->products($products_id_review)}
+    {/if}
+
+    <div class="homepage-wrap homepage-reviews">
+      <div class="align-center">
+        <div class="homepage-reviews_title">[`Last reviews`]</div>
+      </div>
+      <div class="js-reviews-carusel owl-carousel owl-theme owl-loaded">
+        {foreach $reviews as $review}
+          <div class="homepage-reviews_el">
+            <div class="clearfix">
+              {if isset($products_review[$review.product_id])}
+                <a href="{$review.product_url}" class="homepage-reviews_el-image">
+                  {$wa->shop->productImgHtml($products_review[$review.product_id], '96', ['class' => 'js-product-image',  'alt' => $review.product_name|escape])}
+                </a>
+              {/if}
+              <div class="homepage-reviews_el-right">
+                <div class="homepage-reviews_el-title">
+                  {if $review.rate > 0}
+                    <span class="rating">
+                      {$wa->shop->ratingHtml($review.rate, 10)}
+                    </span>
+                  {/if}
+                  {if isset($products_review[$review.product_id])}
+                    <a href="{$review.product_url}">{$review.product_name|escape}</a>
+                  {else}
+                    {$review.product_name|escape}
+                  {/if}
+                </div>
+                <div class="homepage-reviews_el-text">{strip_tags($review.text)|truncate:150}</div>
+              </div>
+            </div>
+
+          </div>
+        {/foreach}
+      </div>
+    </div>
+  {/if}
+{/if}
+{/strip}

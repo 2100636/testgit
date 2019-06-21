@@ -1,0 +1,495 @@
+{if $wa->post("form") }
+  {shopCustom::sendBuyMeEmail($wa->post("form"), $wa->post("url"), $wa->post("name"), $wa->post("phone"), $wa->post("email"), $wa->post("message"), $wa->post("cartnumber") )}
+{/if}
+{strip}
+{$promocards = $wa->shop->promos()|array_values}
+
+
+{if isset($smarty.get.new) } 
+{/if} 
+<div class="l-wrapper">
+  <div class="mainblock clearfix">
+    <div class="item item1">
+      <div class="text1">
+        Настойка
+        <span>Бобровая струя</span>
+      </div>
+      <div class="text2">
+        Только у нас <b>50%</b> раствор высокой экстрактивности
+      </div>
+      <div class="bntwrap">
+        <a href="/catalog-kupit/" class="btn">Заказать</a>
+      </div>
+    </div>
+    <div class="item item2">
+      <div class="text1">
+        <span>Здоровье</span>
+        для всей семьи
+      </div>
+      <div class="text2">
+        Для применения от <b>3</b> до <b>100</b> лет
+      </div>
+    </div>
+    <div class="item item3">
+      <div class="img"></div>
+      <div class="text1">Акция 3 + 1</div>
+      <div class="text2">Купи <b>3</b> флакона по <b>200 мл</b> и получи флакон на 100 мл</div>
+      <div class="text3">Бесплатно</div>
+    </div>
+  </div>
+</div>
+
+<style>
+.mainblock {
+  font-family: 'Open Sans';
+  margin: 12px auto;
+  color: #111;
+}
+.mainblock .item1{
+  background: url(/wa-data/public/site/img/mainblock_item1_bg.jpg) #e3e3e3;
+  position: relative;
+  background-position: center;
+  width: 60%;
+  min-height: 432px;
+  float: left;
+  padding: 103px 0 0 61px;
+  background-size: cover;
+}
+
+.mainblock .item1 .text1{
+  font-size: 29px;
+  line-height: 40px;
+  margin-bottom: 23px;
+}
+.mainblock .item1 .text1 span{
+  font-size: 43px;
+  display: block;
+  font-family: 'palatino linotype';
+  font-weight: 600;
+  letter-spacing: -2px;
+}
+.mainblock .item1 .text2{
+  width: 208px;
+  margin-bottom: 19px;
+  font-size: 16px;
+}
+.mainblock .item1 .btn {
+  background: #f4b448;
+  color: #fff;
+  display: inline-block;
+  padding: 8px 54px;
+  text-transform: uppercase;
+  border-radius: 5px;
+  font-size: 15px;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+
+.mainblock .item2{
+  background: url(/wa-data/public/site/img/Temp2.jpg) #f7e842;
+  background-size: cover;
+  background-position: center;
+  position: relative;
+  width: 39%;
+  min-height: 210px;
+  float: right;
+  padding: 50px 0 0 41px;
+  margin-bottom: 12px;
+}
+.mainblock .item2 .text1{
+  font-size: 21px;
+  line-height: 30px;
+}
+.mainblock .item2 .text1 span{
+  display: block;
+  font-size: 34px;    
+  font-family: 'palatino linotype';
+  font-weight: 600;
+  letter-spacing: -0.3px;
+}
+.mainblock .item2 .text2 {
+  border-top: 1px solid;
+  width: 162px;
+  padding: 4px 20px 0 0;
+  font-size: 15px;
+  font-weight: 400;
+  margin-top: 5px;
+}
+
+.mainblock .item3{
+  background-color: #305322;
+  /* IE9, iOS 3.2+ */
+  background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIHZpZXdCb3g9IjAgMCAxIDEiIHByZXNlcnZlQXNwZWN0UmF0aW89Im5vbmUiPjxsaW5lYXJHcmFkaWVudCBpZD0idnNnZyIgZ3JhZGllbnRVbml0cz0idXNlclNwYWNlT25Vc2UiIHgxPSIwJSIgeTE9IjAlIiB4Mj0iMCUiIHkyPSIxMDAlIj48c3RvcCBzdG9wLWNvbG9yPSIjNDI3NDJkIiBzdG9wLW9wYWNpdHk9IjEiIG9mZnNldD0iMCIvPjxzdG9wIHN0b3AtY29sb3I9IiMxZDMxMTYiIHN0b3Atb3BhY2l0eT0iMSIgb2Zmc2V0PSIxIi8+PC9saW5lYXJHcmFkaWVudD48cmVjdCB4PSIwIiB5PSIwIiB3aWR0aD0iMSIgaGVpZ2h0PSIxIiBmaWxsPSJ1cmwoI3ZzZ2cpIiAvPjwvc3ZnPg==);
+  background-image: -webkit-gradient(linear, 0% 0%, 0% 100%,color-stop(0, rgb(66, 116, 45)),color-stop(1, rgb(29, 49, 22)));
+  /* Android 2.3 */
+  background-image: -webkit-repeating-linear-gradient(top,rgb(66, 116, 45) 0%,rgb(29, 49, 22) 100%);
+  /* IE10+ */
+  background-image: repeating-linear-gradient(to bottom,rgb(66, 116, 45) 0%,rgb(29, 49, 22) 100%);
+  background-image: -ms-repeating-linear-gradient(top,rgb(66, 116, 45) 0%,rgb(29, 49, 22) 100%);
+  position: relative;
+  color: #fff;
+  width: 39%;
+  min-height: 210px;
+  float: right;
+  padding-left: 195px;
+  padding-top: 18px;
+}
+/* IE8- CSS hack */
+@media \0screen\,screen\9 {
+  .mainblock .item3 {
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#ff42742d",endColorstr="#ff1d3116",GradientType=0);
+  }
+}
+.mainblock .item3:before{
+  content: "";
+  display: block;
+  position: absolute;
+  top: 10px;
+  left: 14px;
+  right: 14px;
+  bottom: 10px;
+  border: 1px solid #fff;
+}
+.mainblock .item3 .text1{
+  font-family: 'palatino linotype';
+  font-size: 32px;
+  letter-spacing: -1px;
+}
+.mainblock .item3 .text2{
+  font-size: 14px;
+  padding-top: 10px;
+  border-top: 1px solid #fff;
+  margin-bottom: 3px;
+  width: 188px;
+  margin-top: 7px;
+}
+.mainblock .item3 .text3{
+  font-size: 28px;
+  font-family: 'palatino linotype';
+}
+.mainblock .item3 .img{
+  background: url(/wa-data/public/site/img/mainimg3_banka.png) no-repeat;
+  width: 113px;
+  height: 218px;
+  position: absolute;
+  left: 52px;
+  bottom: 28px;
+  background-size: 100%;
+}
+
+</style>
+
+
+
+<div class="slider-block">
+    {if $theme_settings.show_sidebar_mainpage}
+        <div class="left-sidebar mainpage-sidebar">
+            {if $theme_settings.show_sidebar_mainpage}
+                {$categories = $wa->shop->categories(0, null, true, true)}
+                {include file="`$wa_parent_theme_path`/header.categories.html"}
+            {/if}
+        </div>
+
+        <div class="with-left-sidebar cols-2">
+    {/if}
+
+    {* include file="slider.html" *}
+
+    {if !$theme_settings.show_sidebar_mainpage}
+        </div> <!-- .l-wrapper clearfix -->
+    {/if}
+    {if $theme_settings.show_sidebar_mainpage && $theme_settings.sidebar_end == "promos"}
+        </div> <!-- .with-left-sidebar -->
+    </div> <!-- .l-wrapper clearfix -->
+    {/if}
+
+
+
+
+
+    {if $theme_settings.is_homepage_promos}
+        <div class="l-wrapper">{include file="promos.html"}</div>
+    {/if}
+    {if $theme_settings.show_sidebar_mainpage && $theme_settings.sidebar_end == "categories"}
+        </div> <!-- .with-left-sidebar -->
+    </div> <!-- .l-wrapper clearfix -->
+    {/if}
+
+    {if $theme_settings.categories_mainpage}
+        {$categories = $wa->shop->categories(0, null, true, true)}
+        {if count($categories) > 0}
+            <div class="l-wrapper">
+                <div class="wrap-white mainpage-categories">
+                    {if class_exists('shopWmimageincatPlugin')}
+                        {$Wmimages = shopWmimageincatPlugin::getCategoryImageObj()}
+                    {/if}
+                    {if $theme_settings.max_numbers_subcat_mainpage}
+                        {include file="categories.disclosed.html" categories=$categories show_is_selected=$theme_settings.categories_mainpage_selected}
+                    {else}
+                        {include file="categories.tile.html" categories=$categories show_is_selected=$theme_settings.categories_mainpage_selected}
+                    {/if}
+                </div>
+            </div>
+        {/if}
+    {/if}
+    {if $theme_settings.show_sidebar_mainpage && $theme_settings.sidebar_end == "product_list_1"}
+        </div> <!-- .with-left-sidebar -->
+    </div> <!-- .l-wrapper clearfix -->
+    {/if}
+
+{$is_color_text_list_1 = false}
+{$is_color_text_list_2 = false}
+{$is_color_text_list_3 = false}
+{if $theme_settings.show_sidebar_mainpage && $theme_settings.sidebar_end == "product_list_2"}
+    {$is_color_text_list_1 = true}
+{/if}
+
+{if $theme_settings.show_sidebar_mainpage && $theme_settings.sidebar_end == "product_list_3"}
+    {$is_color_text_list_1 = true}
+    {$is_color_text_list_2 = true}
+{/if}
+
+{if $theme_settings.show_sidebar_mainpage && $theme_settings.sidebar_end == "bullets"}
+    {$is_color_text_list_1 = true}
+    {$is_color_text_list_2 = true}
+    {$is_color_text_list_3 = true}
+{/if}
+<div class="l-wrapper">
+    {include file="bullets.html"}
+
+
+</div>
+<div class="l-wrapper oh mt5">
+    <div class="fl w-25 pr4 pt2">
+        {$wa->block("block_left_odostavke")}
+        {$wa->block("block_left_sale")}
+        {$wa->block("block_left_sertifikat")}
+        {$wa->block("block_left_vk_grup")}    
+    </div>
+    <div class="fl w-75 pa2">
+        <!-- product list -->
+        {if !empty($theme_settings.homepage_product_list_1)}
+            {$list_1 = $wa->shop->productSet( $theme_settings.homepage_product_list_1 )}
+            {if $theme_settings.homepage_product_list_rand}{$shuffle = $list_1|shuffle}{/if}
+            {if !empty($list_1)}
+                <div class="mainpage-products">
+                    {if $theme_settings.homepage_product_list_1_title}
+                    <div  class="mainpage-products_head" {if $theme_settings.homepage_product_list_1_head_color && $is_color_text_list_1} style="color: {$theme_settings.homepage_product_list_1_head_color}"{/if}>
+                        <h1>{$theme_settings.homepage_product_list_1_title}</h1>
+                    </div>
+                    {/if}
+                    {include file="list-thumbs.html" products=$list_1 ulclass="js-product-home"}
+                </div>
+            {/if}
+        {/if}
+        {if $theme_settings.show_sidebar_mainpage && $theme_settings.sidebar_end == "product_list_2"}
+            </div> <!-- .with-left-sidebar -->
+        </div> <!-- .l-wrapper clearfix -->
+        {/if}
+        <div class="info-block-home relative">
+            {$wa->block("info_block_home")}
+        </div>
+        {if !empty($theme_settings.homepage_product_list_2)}
+            {$list_2 = $wa->shop->productSet( $theme_settings.homepage_product_list_2 )}
+            {if $theme_settings.homepage_product_list_rand}{$shuffle = $list_2|shuffle}{/if}
+            {if !empty($list_2)}
+                <div class="mainpage-products home-product">
+                    {if $theme_settings.homepage_product_list_2_title}
+                    <div  class="mainpage-products_head"{if $theme_settings.homepage_product_list_2_head_color && $is_color_text_list_2} style="color: {$theme_settings.homepage_product_list_2_head_color}"{/if}>
+                        {$theme_settings.homepage_product_list_2_title}
+                    </div>
+                    {/if}
+                    {include file="list-thumbs.html" products=$list_2 ulclass="js-product-home"}
+                </div>
+            {/if}
+        {/if}
+    </div>
+</div>
+
+{if $theme_settings.show_sidebar_mainpage && $theme_settings.sidebar_end == "product_list_3"}
+    </div> <!-- .with-left-sidebar -->
+</div> <!-- .l-wrapper clearfix -->
+{/if}
+
+{if !empty($theme_settings.homepage_product_list_3)}
+    {$list_3 = $wa->shop->productSet( $theme_settings.homepage_product_list_3 )}
+    {if $theme_settings.homepage_product_list_rand}{$shuffle = $list_3|shuffle}{/if}
+    {if !empty($list_3)}
+        <div class="mainpage-products">
+            {if $theme_settings.homepage_product_list_3_title}
+                <div class="mainpage-products_head-outer" {if $theme_settings.homepage_product_list_3_head_color} style="background: {$theme_settings.homepage_product_list_3_head_color}"{/if}>
+                    <div class="l-wrapper">
+                        <div  class="mainpage-products_head"{if $theme_settings.homepage_product_list_3_head_color && $is_color_text_list_3} style="color: {$theme_settings.homepage_product_list_3_head_color}"{/if}>
+                            {$theme_settings.homepage_product_list_3_title}
+                        </div>
+                    </div>
+                </div>
+            {/if}
+            <div class="l-wrapper">
+                {include file="list-thumbs.html" products=$list_3 ulclass="js-product-carusel"}
+            </div>
+        </div>
+    {/if}
+{/if}
+{if $theme_settings.show_sidebar_mainpage && $theme_settings.sidebar_end == "bullets"}
+    </div> <!-- .with-left-sidebar -->
+</div> <!-- .l-wrapper clearfix -->
+{/if}
+
+<div class="l-wrapper">
+    {include file="home.reviews.html"}
+</div>
+
+<div class="l-wrapper">
+    {include file="home.brands.html"}
+
+</div>
+
+{$is_news = false}
+{if ($theme_settings.homepage_blogposts && $wa->blog)}
+    {$blog_posts = $wa->blog->posts(null,3)}
+    {if count($blog_posts)}
+        {$is_news = true}
+    {/if}
+{/if}
+
+{$countWidgets = 0}
+{if $theme_settings.widget_code_1 || $theme_settings.widget_code_2}
+    {$countWidgets = 1}
+    {if $theme_settings.widget_code_1 && $theme_settings.widget_code_2}
+        {$countWidgets = 2}
+    {/if}
+{/if}
+
+
+
+{if !empty($theme_settings.homepage_welcome_head) || !empty($theme_settings.homepage_welcome_note) || $is_news || $countWidgets > 0}
+    <div class="mainpage-text-outer">
+        {if !empty($theme_settings.homepage_welcome_head) || !empty($theme_settings.homepage_welcome_note) || $countWidgets > 0}
+            <div class="mainpage-text">
+                <div class="l-wrapper clearfix">
+                    {if $countWidgets > 0}
+                        <div class="mainpage-social">
+                            {if !empty($theme_settings.widget_code_1)}
+                                <div class="mainpage-social_el">
+                                    {$theme_settings.widget_code_1}
+                                </div>
+                            {/if}
+                            {if !empty($theme_settings.widget_code_2)}
+                                <div class="mainpage-social_el">
+                                    {$theme_settings.widget_code_2}
+                                </div>
+                            {/if}
+                        </div>
+                    {/if}
+                    {if !empty($theme_settings.homepage_welcome_head)}
+                      <h1>{$theme_settings.homepage_welcome_head}</h1>
+                    {/if}
+                    {$theme_settings.homepage_welcome_note}
+                </div>
+            </div>
+        {/if}
+
+
+
+
+        {* <div class="info-block-home-2 oh">  *}
+        {*     <div class="l-wrapper oh">         *}
+        {*         {$wa->block("info_block_home_2")}  *}
+        {*     </div>   *}
+        {* </div>  *}
+
+
+
+<!--         <div class="faq-block-home oh mt5">
+            <div class="l-wrapper oh">                
+                {* $wa->block("block_home_faq") *} 
+            </div> 
+        </div> -->
+
+        {* Приглашение к сотрудничеству *}
+        {* <div class="info-block-home3">  *}
+        {*     <div class="l-wrapper oh">             *}
+        {*         {$wa->block("info_block_home_3")}  *}
+        {*     </div>   *}
+        {* </div>  *}
+        
+        
+        {if $is_news}
+            <div class="l-wrapper">
+                <ul class="news-preview ul-block">
+                    {foreach $blog_posts as $post}
+                        <li class="news-preview_el">
+                            {$image = ""}
+                            {if isset($post.image_small) && !empty($post.image_small)}
+                                {$image = $post.image_small}
+                            {/if}
+                            {if empty($image) && isset($post.image) && !empty($post.image)}
+                                {$image = $post.image}
+                            {/if}
+                            {if !empty($image)}
+                                <a href="{$post.link}" class="news-preview_el-image">
+                                    <img src="{$image}" alt="{$post.title}">
+                                </a>
+                            {/if}
+                            <div class="news-preview_el-info">
+                                <div class="news-preview_el-name">
+                                    <span class="news-preview_el-date">{$post.datetime|wa_datetime:"humandate"}</span>
+                                    <a href="{$post.link}">{$post.title}</a>
+                                </div>
+                                <div class="news-preview_el-text">
+                                    {strip_tags($post.text)|truncate:128}
+                                </div>
+
+                                <div class="news-preview_el-more sd-color">
+                                    <a href="{$post.link}">[`Read more`]</a> &rarr;
+                                </div>
+                            </div>
+                        </li>
+                    {/foreach}
+                </ul>
+
+
+            </div>
+        {/if}
+
+        {if $wa->mailer && $wa->getUrl('mailer/frontend/subscribe') && $theme_settings.display_form_subscription}
+            {if !$theme_settings.form_subscription_id}
+                {$theme_settings.form_subscription_id = 1}
+            {/if}
+            <div class="mailer-subs-form">
+                <div class="l-wrapper">
+                    <div class="mailer-subscribe">
+                        <i class="fa fa-envelope mailer-subscribe-icon sd-color" aria-hidden="true"></i>
+                        <form action="{$wa->getUrl('mailer/frontend/subscribe')}" method="post" id="mailer-subscribe-form" target="mailer-subscribe-iframe">
+                            <input type="hidden" name="form_id" value="{$theme_settings.form_subscription_id}">
+                            <div class="mailer-subscribe-head">[`Subscribe newsleter`]</div>
+                            <div class="js-subscribe-inputs">
+                                <div class="subscribe-input">
+                                    <input type="text" name="username" placeholder="[`Enter your e-mail`]">
+                                    <span class="js-submit-form icon-before subscribe-send bs-color"></span>
+                                    <i class="js-subscribe-load icon16 loading"></i>
+                                </div>
+                                {if $theme_settings.display_consent_subscription}
+                                <div class="subscribe-agree js-subscribe-agree">
+                                    <label>
+                                        <input type="checkbox" name="agree" value="1" />
+                                        [`I agree`] <a href="{$theme_settings.link_rules_personal}">[`with the policy of processing personal data`]</a>
+                                    </label>
+                                </div>
+                                {/if}
+                            </div>
+                            <span class="subscribe-thankyou" id="mailer-subscribe-thankyou">[s`Thank you! We’ll keep you posted.`]</span>
+                            <span class="subscribe-error" id="mailer-subscribe-error">[`Form submission error`]</span>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        {/if}
+    </div>
+{/if}
+
+
+
+{/strip}
